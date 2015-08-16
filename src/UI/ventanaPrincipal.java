@@ -5,6 +5,8 @@
  */
 package UI;
 
+import Controlador.controladorEncriptacion;
+
 /**
  *
  * @author Camilo
@@ -50,17 +52,27 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         codeText.setRows(5);
         jScrollPane2.setViewportView(codeText);
 
-        codeType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        codeType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Método César" }));
 
         cryptType.setText("Tipo de encriptación");
 
         encrypt.setText("Desencriptar");
+        encrypt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                encryptActionPerformed(evt);
+            }
+        });
 
         cryptType1.setText("Tipo de encriptación");
 
-        codeType1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        codeType1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Método César" }));
 
         deencrypt.setText("Encriptar");
+        deencrypt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deencryptActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -121,6 +133,16 @@ public class ventanaPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void deencryptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deencryptActionPerformed
+        controladorEncriptacion controlador = new controladorEncriptacion(6, decodeText.getText(),1);
+        codeText.setText(controlador.encriptado());
+    }//GEN-LAST:event_deencryptActionPerformed
+
+    private void encryptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_encryptActionPerformed
+        controladorEncriptacion controlador = new controladorEncriptacion(6, codeText.getText(),2);
+        decodeText.setText(controlador.encriptado());
+    }//GEN-LAST:event_encryptActionPerformed
 
     /**
      * @param args the command line arguments
